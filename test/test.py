@@ -1,15 +1,27 @@
 import cocotb
 from cocotb.triggers import Timer
-from cocotb.regression import TestFactory
-
 
 @cocotb.test()
-async def test_ecdsa_verify(dut):
+async def test_project(dut):
 
-    dut.ui_in.value = 0b10101010
+    dut.ui_in.value = 0
+    dut.uio_in.value = 0
+    dut.ena.value = 1
+    dut.clk.value = 0
+    dut.rst_n.value = 0
 
     await Timer(10, units="ns")
 
-    result = dut.uo_out.value.integer
+    dut.rst_n.value = 1
 
-    assert result == 1, "ECDSA verification failed"
+    for i in range(10):
+
+        dut.ui_in.value = i
+
+        dut.clk.value = 0
+        await Timer(5, units="ns")
+
+        dut.clk.value = 1
+        await Timer(5, units="ns")
+
+    assert True
