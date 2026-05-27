@@ -1,94 +1,57 @@
-`default_nettype none
-`timescale 1ns / 1ps
+`timescale 1ns/1ps
 
-/*
- * Testbench for Firmware Signature Verification Accelerator
- * Tiny Tapeout Project
- */
+module tb;
 
-module tb ();
+    reg clk;
+    reg rst_n;
+    reg ena;
 
-  // Dump waveform signals to FST file
-  initial begin
-    $dumpfile("tb.fst");
-    $dumpvars(0, tb);
-    #1;
-  end
+    reg [7:0] ui_in;
+    reg [7:0] uio_in;
 
-  // Clock and reset
-  reg clk;
-  reg rst_n;
-  reg ena;
+    wire [7:0] uo_out;
+    wire [7:0] uio_out;
+    wire [7:0] uio_oe;
 
-  // Inputs
-  reg [7:0] ui_in;
-  reg [7:0] uio_in;
+    tt_um_ecdsa_verify dut (
+        .ui_in(ui_in),
+        .uo_out(uo_out),
+        .uio_in(uio_in),
+        .uio_out(uio_out),
+        .uio_oe(uio_oe),
+        .ena(ena),
+        .clk(clk),
+        .rst_n(rst_n)
+    );
 
-  // Outputs
-  wire [7:0] uo_out;
-  wire [7:0] uio_out;
-  wire [7:0] uio_oe;
+    always #5 clk = ~clk;
 
-`ifdef GL_TEST
-  wire VPWR = 1'b1;
-  wire VGND = 1'b0;
-`endif
+    initial begin
 
-  // Clock generation
-  initial begin
-    clk = 0;
-    forever #5 clk = ~clk;
-  end
+        $dumpfile("wave.vcd");
+        $dumpvars(0, tb);
 
-  // DUT Instantiation
-  tt_um_fw_signature_verify user_project (
+        clk = 0;
+        rst_n = 0;
+        ena = 1;
+        ui_in = 8'h00;
+        uio_in = 8'h00;
 
-`ifdef GL_TEST
-      .VPWR(VPWR),
-      .VGND(VGND),
-`endif
+        #10;
+        rst_n = 1;
 
-      .ui_in   (ui_in),     // Dedicated inputs
-      .uo_out  (uo_out),    // Dedicated outputs
-      .uio_in  (uio_in),    // IO input path
-      .uio_out (uio_out),   // IO output path
-      .uio_oe  (uio_oe),    // IO enable path
-      .ena     (ena),       // Enable signal
-      .clk     (clk),       // Clock
-      .rst_n   (rst_n)      // Active-low reset
-  );
+        // Correct signature
+        ui_in = 8'hA5;
 
-  // Test sequence
-  initial begin
+        #20;
 
-    // Initialize signals
-    ena    = 1'b1;
-    rst_n  = 1'b0;
-    ui_in  = 8'b00000000;
-    uio_in = 8'b00000000;
+        // Wrong signature
+        ui_in = 8'h55;
 
-    // Apply reset
-    #20;
-    rst_n = 1'b1;
+        #20;
 
-    // Test Case 1: Valid firmware signature
-    #10;
-    ui_in  = 8'hAA;
-    uio_in = 8'hAA;
+        $finish;
 
-    // Test Case 2: Invalid firmware signature
-    #20;
-    ui_in  = 8'h55;
-    uio_in = 8'h0F;
-
-    // Test Case 3: Another valid firmware signature
-    #20;
-    ui_in  = 8'hF0;
-    uio_in = 8'hF0;
-
-    // Finish simulation
-    #50;
-    $finish;
-  end
+    end
 
 endmodule
