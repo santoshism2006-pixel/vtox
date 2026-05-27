@@ -45,6 +45,10 @@ pinout:
   ua[1]: "Unused"
   ua[2]: "Unused"
   ua[3]: "Unused"
+  ua[4]: "Unused"
+  ua[5]: "Unused"
+  ua[6]: "Unused"
+  ua[7]: "Unused"
 
 tests:
   - test/test.py
