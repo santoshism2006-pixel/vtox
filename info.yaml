@@ -1,10 +1,10 @@
 # Tiny Tapeout project information
 
 project:
-  title:        "Firmware Signature Verification Accelerator"
+  title:        "VTOX"
   author:       "Santoshi"
   discord:      "Santoshi2006"
-  description:  "Hardware accelerator for secure firmware signature verification in V2X systems"
+  description:  "RTL TO GDSII flow implementation for ALU design"
   language:     "Verilog"
   clock_hz:     100000
 
