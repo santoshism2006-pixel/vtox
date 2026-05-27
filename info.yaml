@@ -16,7 +16,7 @@ project:
 
   # Source files
   source_files:
-    - "src/project.v"
+    - "project.v"
 
 # Pinout configuration
 pinout:
