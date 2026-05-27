@@ -8,7 +8,7 @@ project:
   language: "Verilog"
   clock_hz: 10000000
   tiles: "1x1"
-  top_module: "tt_um_ecdsa_verify"
+  top_module: "tt_um_fw_signature_verify"
 
   source_files:
     - project.v
@@ -40,3 +40,11 @@ pinout:
   uio[5]: "Bidirectional IO 5"
   uio[6]: "Bidirectional IO 6"
   uio[7]: "Bidirectional IO 7"
+
+  ua[0]: "Unused"
+  ua[1]: "Unused"
+  ua[2]: "Unused"
+  ua[3]: "Unused"
+
+tests:
+  - test/test.py
