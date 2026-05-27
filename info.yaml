@@ -16,7 +16,7 @@ project:
 
   # Source files
   source_files:
-    - "src/tt_um_fw_signature_verify.v"
+    - "src/project.v"
 
 # Pinout configuration
 pinout:
