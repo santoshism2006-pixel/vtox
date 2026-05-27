@@ -1,55 +1,40 @@
-# Tiny Tapeout project information
-
 project:
-  title:        "VTOX"
-  author:       "Santoshi"
-  discord:      "Santoshi2006"
-  description:  "RTL TO GDSII flow implementation for ALU design"
-  language:     "Verilog"
-  clock_hz:     100000
-
-  # Tile size used for the design
+  title: "ECDSA Verification"
+  author: "Lyra"
+  discord: ""
+  description: "Simplified ECDSA digital signature verification module using Verilog"
+  language: "Verilog"
+  clock_hz: 10000000
   tiles: "1x1"
+  top_module: "tt_um_ecdsa_verify"
 
-  # Top module name
-  top_module:  "tt_um_fw_signature_verify"
-
-  # Source files
   source_files:
-    - "project.v"
+    - project.v
 
-# Pinout configuration
 pinout:
+  ui[0]: "Input bit 0"
+  ui[1]: "Input bit 1"
+  ui[2]: "Input bit 2"
+  ui[3]: "Input bit 3"
+  ui[4]: "Input bit 4"
+  ui[5]: "Input bit 5"
+  ui[6]: "Input bit 6"
+  ui[7]: "Input bit 7"
 
-  # Dedicated inputs
-  ui[0]: "Firmware Data Bit 0"
-  ui[1]: "Firmware Data Bit 1"
-  ui[2]: "Firmware Data Bit 2"
-  ui[3]: "Firmware Data Bit 3"
-  ui[4]: "Firmware Data Bit 4"
-  ui[5]: "Firmware Data Bit 5"
-  ui[6]: "Firmware Data Bit 6"
-  ui[7]: "Firmware Data Bit 7"
+  uo[0]: "Signature valid output"
+  uo[1]: ""
+  uo[2]: ""
+  uo[3]: ""
+  uo[4]: ""
+  uo[5]: ""
+  uo[6]: ""
+  uo[7]: ""
 
-  # Dedicated outputs
-  uo[0]: "Verification Valid"
-  uo[1]: "Verification Done"
-  uo[2]: "Unused"
-  uo[3]: "Unused"
-  uo[4]: "Unused"
-  uo[5]: "Unused"
-  uo[6]: "Unused"
-  uo[7]: "Unused"
-
-  # Bidirectional pins
-  uio[0]: "Signature Bit 0"
-  uio[1]: "Signature Bit 1"
-  uio[2]: "Signature Bit 2"
-  uio[3]: "Signature Bit 3"
-  uio[4]: "Signature Bit 4"
-  uio[5]: "Signature Bit 5"
-  uio[6]: "Signature Bit 6"
-  uio[7]: "Signature Bit 7"
-
-# Do not change
-yaml_version: 6
+  uio[0]: ""
+  uio[1]: ""
+  uio[2]: ""
+  uio[3]: ""
+  uio[4]: ""
+  uio[5]: ""
+  uio[6]: ""
+  uio[7]: ""
