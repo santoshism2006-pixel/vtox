@@ -1,34 +1,43 @@
-# Firmware Signature Verification Accelerator Testbench
+# Tiny Tapeout - ECDSA Verification
 
-This is the verification environment for the **Firmware Signature Verification Accelerator** Tiny Tapeout project.
+## Project Description
 
-The testbench uses [cocotb](https://docs.cocotb.org/en/stable/) to verify the functionality of the hardware security accelerator used for firmware authentication in V2X communication systems.
+This project implements a simplified ECDSA-inspired digital signature verification module using Verilog HDL.
 
-The project validates firmware integrity and authenticity using signature verification logic.
+The design checks input data and validates a digital signature condition.
 
-For more information about Tiny Tapeout testing flow, visit the Tiny Tapeout documentation website.
+## Features
 
----
+- Verilog RTL design
+- Modular architecture
+- Tiny Tapeout compatible
+- OpenLane compatible
+- ASIC implementation ready
 
-# Project Overview
+## Inputs
 
-The Firmware Signature Verification Accelerator performs:
+| Signal | Description |
+|--------|-------------|
+| ui_in[7:0] | Input data |
 
-- Firmware hash verification
-- Signature authentication
-- Secure firmware validation
-- Detection of tampered firmware
-- Hardware-based security processing
+## Outputs
 
-The design is implemented in Verilog HDL and verified using Cocotb simulation.
+| Signal | Description |
+|--------|-------------|
+| uo_out[0] | Signature valid output |
 
----
+## Working
 
-# Setting up
+If input data equals `8'hA5`, the signature is considered valid.
 
-## 1. Update the Makefile
+## Tools Used
 
-Edit the `Makefile` and modify:
+- Verilog HDL
+- Icarus Verilog
+- OpenLane
+- Magic
+- Tiny Tapeout
 
-```makefile
-PROJECT_SOURCES = tt_um_fw_signature_verify.v
+## Author
+
+Lyra
