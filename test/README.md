@@ -1,47 +1,34 @@
-# Sample testbench for a Tiny Tapeout project
+# Firmware Signature Verification Accelerator Testbench
 
-This is a sample testbench for a Tiny Tapeout project. It uses [cocotb](https://docs.cocotb.org/en/stable/) to drive the DUT and check the outputs.
-See below to get started or for more information, check the [website](https://tinytapeout.com/hdl/testing/).
+This is the verification environment for the **Firmware Signature Verification Accelerator** Tiny Tapeout project.
 
-## Setting up
+The testbench uses [cocotb](https://docs.cocotb.org/en/stable/) to verify the functionality of the hardware security accelerator used for firmware authentication in V2X communication systems.
 
-1. Edit [Makefile](Makefile) and modify `PROJECT_SOURCES` to point to your Verilog files.
-2. Edit [tb.v](tb.v) and replace `tt_um_example` with your module name.
+The project validates firmware integrity and authenticity using signature verification logic.
 
-## How to run
+For more information about Tiny Tapeout testing flow, visit the Tiny Tapeout documentation website.
 
-To run the RTL simulation:
+---
 
-```sh
-make -B
-```
+# Project Overview
 
-To run gatelevel simulation, first harden your project and copy `../runs/wokwi/results/final/verilog/gl/{your_module_name}.v` to `gate_level_netlist.v`.
+The Firmware Signature Verification Accelerator performs:
 
-Then run:
+- Firmware hash verification
+- Signature authentication
+- Secure firmware validation
+- Detection of tampered firmware
+- Hardware-based security processing
 
-```sh
-make -B GATES=yes
-```
+The design is implemented in Verilog HDL and verified using Cocotb simulation.
 
-If you wish to save the waveform in VCD format instead of FST format, edit tb.v to use `$dumpfile("tb.vcd");` and then run:
+---
 
-```sh
-make -B FST=
-```
+# Setting up
 
-This will generate `tb.vcd` instead of `tb.fst`.
+## 1. Update the Makefile
 
-## How to view the waveform file
+Edit the `Makefile` and modify:
 
-Using GTKWave
-
-```sh
-gtkwave tb.fst tb.gtkw
-```
-
-Using Surfer
-
-```sh
-surfer tb.fst
-```
+```makefile
+PROJECT_SOURCES = tt_um_fw_signature_verify.v
